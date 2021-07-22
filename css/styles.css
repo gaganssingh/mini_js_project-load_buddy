@@ -26,6 +26,11 @@ h6 {
   color: var(--primary-color);
 }
 
+.table > thead {
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+}
+
 footer {
   padding-right: 1rem;
 }
