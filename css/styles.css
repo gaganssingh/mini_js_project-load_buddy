@@ -1,6 +1,8 @@
+/* Generic Styles */
 :root {
   --primary-color: #414040;
   --secondary-color: #8c52ff;
+  --flashing-color: #d2f9b0;
   --dark-color: #303030;
   --white-color: #e7e7e7;
 }
@@ -26,26 +28,7 @@ h6 {
   color: var(--primary-color);
 }
 
-.table > thead {
-  background-color: var(--secondary-color);
-  color: var(--white-color);
-}
-
-footer {
-  padding-right: 1rem;
-}
-
-footer .social > a {
-  color: var(--white-color);
-  opacity: 0.75;
-}
-
-footer .social > a:hover {
-  cursor: pointer;
-  color: var(--secondary-color);
-  opacity: 0.9;
-}
-
+/* Home Page Styles */
 .bsicon {
   color: #8312fa;
 }
@@ -64,6 +47,54 @@ footer .social > a:hover {
 
 .checklist > li i {
   color: var(--secondary-color);
+}
+
+/* The App Page Styles */
+/* Monthly Payments section flashing animation */
+.flashing {
+  animation: flashingResultsBox 1s ease-in-out;
+}
+@keyframes flashingResultsBox {
+  0% {
+    background-color: var(--flashing-color);
+    border-radius: 10px;
+  }
+  49% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: var(--flashing-color);
+    border-radius: 10px;
+  }
+  99% {
+    background-color: transparent;
+  }
+  100% {
+    background-color: var(--flashing-color);
+    border-radius: 10px;
+  }
+}
+
+/* Tbale styles */
+.table > thead {
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+}
+
+/* Genertic Footer Styles */
+footer {
+  padding-right: 1rem;
+}
+
+footer .social > a {
+  color: var(--white-color);
+  opacity: 0.75;
+}
+
+footer .social > a:hover {
+  cursor: pointer;
+  color: var(--secondary-color);
+  opacity: 0.9;
 }
 
 /* PRISM CSS CUSTOMATION */
