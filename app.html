@@ -92,7 +92,7 @@
         </h1>
         <div class="row">
           <!-- Form for user inputs -->
-          <div class="col-12 col-lg-6">
+          <div class="col-12 col-lg-6 mb-5">
             <div class="border border-1 shadow-lg p-3 bg-light">
               <form>
                 <!-- Loan Amount input -->
@@ -149,7 +149,36 @@
             </div>
           </div>
           <!-- Monthly Payment Information -->
-          <div class="col-12 col-lg-6"></div>
+          <div
+            class="
+              col-12 col-lg-6
+              d-flex
+              flex-column
+              align-items-center
+              justify-content-start
+              mb-5
+              px-5
+            "
+          >
+            <h2 class="fst-italic">Your Monthly Payments</h2>
+            <h2 class="display-2 fw-bold">
+              $<span id="totalMonthlyAmount">0</span>
+            </h2>
+            <div class="col-12 d-flex flex-row justify-content-between">
+              <p class="lead">Total Principle</p>
+              <p>$<span id="totalPrinciple">0</span></p>
+            </div>
+            <div class="col-12 d-flex flex-row justify-content-between">
+              <p class="lead">Total Interest</p>
+              <p>$<span id="totalInterest">0</span></p>
+            </div>
+            <div class="col-12 d-flex flex-row justify-content-between">
+              <p class="lead">Total Cost</p>
+              <p>$<span id="totalCost">0</span></p>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-12"></div>
+          </div>
           <!-- Detailed Table display -->
           <div class="col-12 col-lg-12"></div>
           <!--  -->
