@@ -1,21 +1,22 @@
 // **************
 // DOM SELECTORS
 // **************
+// Form & button
 const userInputForm = document.getElementById("userInputForm");
-const calculateBtn = document.getElementById("calculateBtn");
 const resetBtn = document.getElementById("resetBtn");
+// Alert box and components
 const alertBox = document.getElementById("alertBox");
 const alertHeading = document.getElementById("alertHeading");
-const monthlyPaymentsBox = document.getElementById("monthlyPayments");
 const alertMessage = document.getElementById("alertMessage");
+// Monthly payments box and components
+const monthlyPaymentsBox = document.getElementById("monthlyPayments");
 const totalMonthlyAmount = document.getElementById("totalMonthlyAmount");
-const totalPrincipalRemaining = document.getElementById(
-  "totalPrincipalRemaining"
-);
-const totalInterestRemaining = document.getElementById(
-  "totalInterestRemaining"
-);
-const totalCostRemaining = document.getElementById("totalCostRemaining");
+const principal = document.getElementById("principal");
+const interest = document.getElementById("interest");
+const cost = document.getElementById("cost");
+// Table
+const table = document.getElementById("table");
+const tableBody = document.getElementById("tableBody");
 
 // **************
 // FUNCTIONS
@@ -24,14 +25,14 @@ const totalCostRemaining = document.getElementById("totalCostRemaining");
 const showAlert = (heading, message) => {
   alertHeading.innerText = heading;
   alertMessage.innerText = message;
-  alertBox.classList.remove("invisible");
+  alertBox.classList.remove("d-none");
 };
 
 // Clear any previously shown alerts
 const clearAlerts = () => {
   alertHeading.innerText = "";
   alertMessage.innerText = "'";
-  alertBox.classList.add("invisible");
+  alertBox.classList.add("d-none");
 };
 
 // Clear all user inputs
@@ -44,9 +45,9 @@ const clearInputs = () => {
 // Reset monthly payments display data to the defaults of 0
 const resetMonthlyPaymentsDisplay = () => {
   totalMonthlyAmount.innerText = 0;
-  totalPrincipalRemaining.innerText = 0;
-  totalInterestRemaining.innerText = 0;
-  totalCostRemaining.innerText = 0;
+  principal.innerText = 0;
+  interest.innerText = 0;
+  cost.innerText = 0;
 };
 
 // Reset form, monthly display and table display
@@ -54,6 +55,8 @@ const resetEverything = () => {
   clearAlerts();
   resetMonthlyPaymentsDisplay();
   clearInputs();
+  table.classList.add("d-none");
+  tableBody.innerHTML = "";
 };
 
 // calculate all loan details
@@ -79,16 +82,65 @@ const calculateLoanDetails = (principal, months, percent) => {
   };
 };
 
-// Display Monthly Payments Details
+// Display monthly payments information
 const displayMonthlyPayments = (loanDetails) => {
   totalMonthlyAmount.innerText = loanDetails.monthlyPayment;
-  totalPrincipalRemaining.innerText = loanDetails.principal;
-  totalInterestRemaining.innerText = loanDetails.interest;
-  totalCostRemaining.innerText = loanDetails.total;
+  principal.innerText = loanDetails.principal;
+  interest.innerText = loanDetails.interest;
+  cost.innerText = loanDetails.total;
 
   // Flash the result display to get user's attention
   monthlyPaymentsBox.classList.add("flashing");
   setTimeout(() => monthlyPaymentsBox.classList.remove("flashing"), 2000);
+};
+
+// Display table with amortization data
+const displayAmortizationTable = (loanDetails, months, rate) => {
+  const { monthlyPayment, principal, interest, total } = loanDetails;
+
+  //   Total Monthly Payment = (amount loaned) * (rate/1200) / (1 – (1 + rate/1200)(-Number of Months) )
+  //   Remaining Balance before the very first month equals the amount of the loan.
+  //   Interest Payment = Previous Remaining Balance * rate/1200
+  //   Principal Payment = Total Monthly Payment - Interest Payment
+  //   At end each month, Remaining Balance = Previous Remaining Balance - principal payments
+
+  // tableData += `
+  //   <tr>
+  //   <td>${i}</td>
+  //   <td>${monthlyPayment}</td>
+  //   <td>${principal}</td>
+  //   <td>${interest}</td>
+  //   <td>${interest}</td>
+  //   <td>${total}</td>
+  //   </tr>
+  // `;
+
+  let tableData = "";
+  let remainingBalance = principal;
+  let totalInterestPaid = 0;
+
+  for (let i = 1; i <= months; i++) {
+    const interestPaid = monthlyPayment * (rate / 1200);
+    console.log(`interestPaid`, interestPaid);
+    const principalPaid = monthlyPayment - interestPaid;
+    totalInterestPaid += interestPaid;
+
+    tableData += `
+      <tr>
+      <td>${i}</td>
+      <td>${monthlyPayment}</td>
+      <td>${principalPaid}</td>
+      <td>${interestPaid}</td>
+      <td>${totalInterestPaid}</td>
+      <td>${remainingBalance}</td>
+      </tr>
+    `;
+
+    remainingBalance = remainingBalance - principalPaid;
+  }
+
+  tableBody.innerHTML = tableData;
+  table.classList.remove("d-none");
 };
 
 // Get User Input
@@ -129,6 +181,14 @@ const getUserInput = (e) => {
 
     // Display monthly payments information
     displayMonthlyPayments(loanDetails);
+    // Display table with amortization data
+    displayAmortizationTable(
+      loanDetails,
+      userPaymentsNumber,
+      userPaymentsNumber
+    );
+
+    // Clear inputs
     clearInputs();
   }
 };
