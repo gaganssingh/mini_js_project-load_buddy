@@ -5,6 +5,8 @@
   --white-color: #e7e7e7;
 }
 
+/* #8C52FF */
+
 body {
   color: var(--dark-color);
 }
