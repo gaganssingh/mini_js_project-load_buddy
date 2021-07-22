@@ -86,7 +86,75 @@
 
     <!-- Main Content Body -->
     <main class="flex-shrink-0">
-      <div class="container"></div>
+      <div class="container mt-3 mt-lg-5">
+        <h1 class="display-5 fw-bold lh-1 mb-3 d-none d-lg-block">
+          Loan Buddy
+        </h1>
+        <div class="row">
+          <!-- Form for user inputs -->
+          <div class="col-12 col-lg-6">
+            <div class="border border-1 shadow-lg p-3 bg-light">
+              <form>
+                <!-- Loan Amount input -->
+                <div class="mb-3">
+                  <label for="amount" class="form-label">Loan Amount</label>
+                  <input
+                    type="number"
+                    name="amount"
+                    id="amount"
+                    class="form-control"
+                    placeholder="Enter amount in $"
+                  />
+                </div>
+                <!-- Payments input -->
+                <div class="mb-3">
+                  <label for="payments" class="form-label"
+                    >Number of Payments</label
+                  >
+                  <input
+                    type="number"
+                    name="payments"
+                    id="payments"
+                    class="form-control"
+                    placeholder="Enter total months of the loan"
+                  />
+                </div>
+                <!-- Payments input -->
+                <div class="mb-3">
+                  <label for="rate" class="form-label">Rate</label>
+                  <input
+                    type="number"
+                    name="rate"
+                    id="rate"
+                    class="form-control"
+                    placeholder="Enter loan percentage"
+                  />
+                </div>
+                <div
+                  class="
+                    col-12
+                    d-flex
+                    justify-content-center justify-content-lg-end
+                  "
+                >
+                  <button
+                    type="button"
+                    id="submitBtn"
+                    class="btn btn-outline-secondary"
+                  >
+                    CALCULATE
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- Monthly Payment Information -->
+          <div class="col-12 col-lg-6"></div>
+          <!-- Detailed Table display -->
+          <div class="col-12 col-lg-12"></div>
+          <!--  -->
+        </div>
+      </div>
     </main>
 
     <!-- Footer -->
