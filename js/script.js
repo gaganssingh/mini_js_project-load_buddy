@@ -1,3 +1,11 @@
-const helloWorld = () => {
-  alert("Hello World");
-};
+// **************
+// DOM SELECTORS
+// **************
+
+// **************
+// FUNCTIONS
+// **************
+
+// **************
+// EVENT HANDLERS
+// **************
